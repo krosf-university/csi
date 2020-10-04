@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_PASSWORD=csi20
+      - MYSQL_ROOT_PASSWORD=csi20
+      - MYSQL_USER=csi20
+      - MYSQL_DATABASE=csi20
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+volumes:
+  mysql:
