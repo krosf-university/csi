@@ -35,7 +35,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'es.uca.gii.csi20.check.App'
+    mainClassName = 'es.uca.gii.csi20.crsf.App'
 }
 
 test {
