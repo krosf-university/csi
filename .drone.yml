@@ -12,8 +12,12 @@ steps:
 
 - name: test
   image: gradle:6.7.0-jdk11
+  environment:
+    SONAR_TOKEN:
+      from_secret: SONAR_TOKEN
   commands:
     - ./gradlew clean test
+    - ./gradlew sonarqube -Dsonar.projectKey=csi -Dsonar.host.url=https://sonarqube.intl.krosf.com -Dsonar.login=$SONAR_TOKEN
 
 services:
 - name: lvh.me

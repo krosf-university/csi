@@ -14,6 +14,8 @@ plugins {
     id 'application'
 
     id 'jacoco'
+
+    id "org.sonarqube" version "3.0"
 }
 
 repositories {
@@ -51,4 +53,12 @@ jacocoTestReport {
     }
 
     dependsOn test
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "csi"
+        property "sonar.projectName", "csi"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
 }
