@@ -8,7 +8,7 @@ steps:
   commands:
     - apt update && apt install -y wait-for-it
     - wait-for-it lvh.me:3306
-    - CSI20CRSF.sql | mysql -u root --password=traefik -h lvh.me CSI20CRSF < CSI20CRSF.sql
+    - mysql -u root --password=traefik -h lvh.me CSI20CRSF < CSI20CRSF.sql
 
 - name: test
   image: gradle:6.7.0-jdk11
