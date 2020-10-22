@@ -3,7 +3,23 @@ kind: pipeline
 name: default
 
 steps:
+- name: prepare database
+  image: mysql:8
+  commands:
+    - apt update && apt install -y wait-for-it
+    - wait-for-it lvh.me:3306
+    - cat CSI20CRSF.sql | mysql -u root --password=traefik CSI20CRSF
+
 - name: test
   image: gradle:6.7.0-jdk11
   commands:
     - ./gradlew clean test
+
+services:
+- name: lvh.me
+  image: mysql:8
+  environment:
+    MYSQL_PASSWORD: traefik
+    MYSQL_ROOT_PASSWORD: traefik
+    MYSQL_USER: traefik
+    MYSQL_DATABASE: traefik
