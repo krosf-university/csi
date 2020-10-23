@@ -5,15 +5,13 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
-    private Config() {
-    }
+  private Config() {}
 
-    public static Properties Properties(String sFile) throws IOException {
-
-        try (InputStream inputStream = Config.class.getClassLoader().getResourceAsStream(sFile)) {
-            Properties result = new Properties();
-            result.load(inputStream);
-            return result;
-        }
+  public static Properties Properties(String sFile) throws IOException {
+    try (InputStream inputStream = Config.class.getClassLoader().getResourceAsStream(sFile)) {
+      Properties result = new Properties();
+      result.load(inputStream);
+      return result;
     }
+  }
 }
