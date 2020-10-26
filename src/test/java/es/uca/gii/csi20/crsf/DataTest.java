@@ -6,6 +6,7 @@ import es.uca.gii.csi20.crsf.data.Data;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class DataTest {
@@ -14,28 +15,27 @@ class DataTest {
     Data.LoadDriver();
   }
 
+  @Disabled
   @Test
   void testTableAccess() throws Exception {
     try (Connection con = Data.Connection();
         ResultSet count = con.createStatement().executeQuery("SELECT COUNT(*) FROM Discipline;");
         ResultSet entitiesSet =
-            con.createStatement()
-                .executeQuery("SELECT id, name, credits, evaluation_system_id FROM Discipline;")) {
+            con.createStatement().executeQuery("SELECT id, name, credits FROM Discipline;")) {
       Integer iCounter = 0;
 
       while (entitiesSet.next()) {
         System.out.printf(
-            "%s, %s, %s, %s\n",
+            "%s, %s, %s\n",
             entitiesSet.getString("id"),
             entitiesSet.getString("name"),
-            entitiesSet.getString("credits"),
-            entitiesSet.getString("evaluation_system_id"));
+            entitiesSet.getString("credits"));
         ++iCounter;
       }
 
       count.next();
       assertEquals(count.getInt(1), iCounter);
-      assertEquals(4, entitiesSet.getMetaData().getColumnCount());
+      assertEquals(3, entitiesSet.getMetaData().getColumnCount());
     }
   }
 

@@ -20,33 +20,15 @@ CREATE TABLE `Discipline` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `credits` int NOT NULL,
-  `evaluation_system_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `Discipline_name_uindex` (`name`),
-  KEY `evaluation_system` (`evaluation_system_id`),
-  CONSTRAINT `evaluation_system` FOREIGN KEY (`evaluation_system_id`) REFERENCES `EvaluationSystem` (`id`)
+  UNIQUE KEY `Discipline_name_uindex` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `Discipline` WRITE;
 /*!40000 ALTER TABLE `Discipline` DISABLE KEYS */;
-INSERT INTO `Discipline` VALUES (1,'CSI',6,1);
+INSERT INTO `Discipline` VALUES (1,'CSI',6);
 /*!40000 ALTER TABLE `Discipline` ENABLE KEYS */;
-UNLOCK TABLES;
-DROP TABLE IF EXISTS `EvaluationSystem`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `EvaluationSystem` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-LOCK TABLES `EvaluationSystem` WRITE;
-/*!40000 ALTER TABLE `EvaluationSystem` DISABLE KEYS */;
-INSERT INTO `EvaluationSystem` VALUES (1,'2020-10-25 17:14:40');
-/*!40000 ALTER TABLE `EvaluationSystem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
